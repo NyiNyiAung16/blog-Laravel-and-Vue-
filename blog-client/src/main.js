@@ -6,10 +6,10 @@ import axios from 'axios'
 import router from './router/router.js'
 import store from './store/index.js'
 
-axios.defaults.baseURL = "http://127.0.0.1:8000";
+axios.defaults.baseURL = "http://localhost:8000";
 axios.defaults.withCredentials = true;
 
-createApp(App)
-.use(router)
-.use(store)
-.mount('#app')
+store.dispatch('authenticate').then(()=>{
+    createApp(App).use(router).use(store).mount('#app')
+})
+
