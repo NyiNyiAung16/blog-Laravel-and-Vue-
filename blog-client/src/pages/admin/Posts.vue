@@ -29,11 +29,19 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
-import getPosts from '../../api/admin/getPosts'
+import { onMounted } from 'vue'
+import { useRouter } from 'vue-router';
+import useAdminPosts from '../../api/admin/useAdminPosts'
 
-const {posts,fetchPosts} = getPosts();
+const router = useRouter();
+
+const { posts, fetchPosts, createPost} = useAdminPosts();
 onMounted(()=>fetchPosts());
+
+const newPost = async() => {
+    let post = await createPost();
+    router.replace({name:'admin.posts.edit',params:{slug:post.slug}});
+}
 
 </script>
 

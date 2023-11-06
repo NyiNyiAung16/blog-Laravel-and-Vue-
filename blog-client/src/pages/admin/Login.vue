@@ -27,7 +27,8 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue';
+import { reactive, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
 const errors = ref({});
@@ -38,11 +39,14 @@ const form = reactive({
 });
 
 const store = useStore();
+const router = useRouter();
+
 const attemptLogin = () => {
     store.dispatch('login',form)
     .then(()=>{
         form.email = '';
         form.password = '';
+        router.replace({name:'admin.posts'});
     })
     .catch((e)=>{
         errors.value = e.response.data.errors;

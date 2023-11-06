@@ -1,5 +1,5 @@
 <template>
-    <h1 class="block text-center text-4xl sm:text-6xl leading-10 font-extrabold tracking-light text-gray-900">
+    <h1 class="block text-center text-4xl lg:text-6xl leading-10 font-extrabold tracking-light text-gray-900 p-0">
         {{ post.title }}
     </h1>
     <p class="mt-16 text-gray-500 prose prose-sm lg:prose" v-html="post.teaser"></p>
